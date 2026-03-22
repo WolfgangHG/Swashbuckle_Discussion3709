@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,11 @@ namespace WebApiSwaggerVersion
             services.AddControllers(options =>
             {
                 options.Conventions.Add(new GroupingByNamespaceConvention());
+
+            }).AddJsonOptions( options =>
+            {
+                //convert enum values to string instead of numbers.
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
 
             services.AddSwaggerGen(config =>
