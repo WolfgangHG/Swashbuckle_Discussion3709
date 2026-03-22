@@ -67,7 +67,10 @@ namespace WebApiSwaggerVersion
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger();
+            app.UseSwagger( options =>
+            {
+              options.OpenApiVersion = OpenApiSpecVersion.OpenApi3_1;
+            });
 
             app.UseSwaggerUI(config =>
             {
